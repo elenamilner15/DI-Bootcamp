@@ -51,11 +51,3 @@ except Exception as e:
     print(e)
 
 incredible_family.incredible_presentation()
-
-# incredible_family.use_power('Jack')
-
-# try:
-#     incredible_family.use_power('Michael')
-#     incredible_family.use_power('Jack')
-# except Exception as e:
-#     print(e)
