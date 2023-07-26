@@ -13,24 +13,23 @@ cat1 = Cat("Bob", 10)
 cat2 = Cat("Bat", 11)
 cat3 = Cat("Bill", 9)
 
-# def old_cat(cat_list: list[Cat]) -> Cat | None:
-#     if len(cat_list) == 0:
-#         return None
-
 def old_cat(cat_list):
     if not cat_list:
         return None
 
-    oldest_cat = cat_list[0]
+    oldest = cat_list[0]
 
     for cat in cat_list:
-        if cat.age > oldest_cat.age:
-            oldest_cat = cat
+        if cat.age > oldest.age:
+            oldest = cat
 
-    return oldest_cat
+    return oldest
 
 oldest = old_cat([cat1, cat2, cat3])
-print(oldest.name)
+
+print(f"The oldest cat is {oldest.name} the age of cat is {oldest.age}")
+
+
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # Exercise 2 : Dogs
@@ -64,10 +63,12 @@ obj1.bark()
 obj1.jump()
 
 davids_dog = Dog(name='Rex', height=50)
+print(f"{davids_dog.name} is {davids_dog.height}cm tall.")
 davids_dog.bark()
 davids_dog.jump()
 
 sarahs_dog = Dog(name='Teacup', height=20)
+print(f"{sarahs_dog.name} is {sarahs_dog.height}cm tall.")
 sarahs_dog.bark()
 sarahs_dog.jump()
 
@@ -132,8 +133,7 @@ class Zoo:
                 print(f"{new_animal} already in the zoo")
             else:
                 self.animals.append(new_animal)
-                print(f"{new_animal} was added to the zoo")
-        # print(self.animals)
+                print(f"{new_animal} was added to the zoo")        
     def get_animals(self):
         print(f"The residents of our Zoo: {', '.join(self.animals)}")
         
@@ -144,13 +144,26 @@ class Zoo:
                 print(f"{sold_animal} was sold")
             else:                
                 print(f"There is no {sold_animal} in our zoo")             
-    def sort_animals(self):
+    def sort_animals(self):      
         self.animals.sort()
-        self.get_animals()    #call print   
+        sorted_animals = self.animals
+        grouped_animals = {}
+        for animal in sorted_animals:
+            first_letter = animal[0].lower()
+            if first_letter not in grouped_animals:
+                grouped_animals[first_letter] = [animal]
+            else:
+                grouped_animals[first_letter].append(animal)
+          
+
+        for letter, animals_list in grouped_animals.items():
+            animals_str = ", ".join(animals_list)
+            print(f"Group {letter.upper()}: {animals_str}")
+
               
         
 new_animals = ['kangaroo', 'penguin', 'panda', 'rhino']
-TA_animals = ['tiger', 'bear', 'monkey', 'flamingo', 'rhino', 'giraffe', 'penguin']  
+TA_animals = ['tiger', 'bear', 'monkey', 'flamingo', 'rhino', 'giraffe', 'penguin', "kiwi"]  
 zoo_TA = Zoo('Tel-Aviv Zoo',TA_animals) 
         
 Zoo.add_animal(zoo_TA,new_animals)
