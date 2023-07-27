@@ -37,10 +37,7 @@ class Text:
         print(f"The most frequent word is '{most_common_word}' with a frequency of {my_list[most_common_word]}")
         
     def unique_words(self, my_list):
-        unique_list=[]
-        # for word in my_list:            
-        #     count = my_list.count(word) 
-        #     my_list[word] =count
+        unique_list=[]     
         for word, count in my_list.items():
             if count==1:
                 unique_list.append(word)
