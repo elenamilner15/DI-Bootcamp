@@ -10,6 +10,13 @@
 # a method that returns the most common word in the text.
 # a method that returns a list of all the unique words in the text.
 # import string
+
+# Part II
+# Download the_stranger.txt file.
+# Implement a classmethod that returns a Text instance but with a text file:
+# Now, use the provided the_stranger.txt file and try using the class you created above.
+
+
 import re
 
 class Text:
@@ -46,8 +53,25 @@ class Text:
                 pass
         
         print ("The unique words are: " + ", ".join(unique_list)) 
-        return unique_list     
-   
+        return unique_list  
+    
+    @classmethod
+    def from_file(cls, file_path):
+        with open(file_path, 'r') as file:
+            text = file.read()
+        return cls(text)   
+    
+class TextModification(Text):
+    def __init__(self, text):
+        super().__init__(text)
+        self.stop_words = set(['a', 'an', 'the', 'in', 'on', 'of', 'and', 'to', 'for', 'with', 'is', 'it', 'as', 'at'])
+
+    def remove_stop_words(self):
+        words_list = self.text.split()
+        filtered_text = ' '.join(word for word in words_list if word.lower() not in self.stop_words)
+        return filtered_text
+    
+#!!!!!!!!!   PART1      !!!!!!!!!!!!!!!!!   
 example_text = "A good, good, book book  cost as much as a good house."
 new_text = Text(example_text).change_text()
 my_list=Text(new_text).word_frequency()
@@ -56,3 +80,21 @@ Text(new_text).most_common_word(my_list) #'any_text' could be here.
 #Function only uses my_list 
 Text(new_text).unique_words(my_list)
 
+#!!!!!!!!!   PART2      !!!!!!!!!!!!!!!!!   
+strange_path = r"C:\Users\elena\Desktop\6TTA\DI-Bootcamp\Week 3\Day 4\DailyChallenge\the_stranger.txt"
+
+stranger_text = Text.from_file(strange_path)
+new_text = stranger_text.change_text()
+my_list=Text(new_text).word_frequency()
+Text(new_text).unique_words(my_list)
+Text(new_text).most_common_word(my_list) #'any_text' could be here.
+
+#!!!!!!!!!   BONUS ()   !!!!!!!!!!!!!!!!! 
+
+# method text without (!!!!!!!!) PUNCTUATION and SPECIAL CHARACTERS (!!!!!!!!) was applied in partI as def change_text(self). Before Bonus task was read
+
+
+the_stranger_mod = TextModification.from_file(strange_path)
+filtered_text = the_stranger_mod.remove_stop_words()
+print("Text without stop words:")
+print(filtered_text)
