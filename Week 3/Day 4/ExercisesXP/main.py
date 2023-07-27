@@ -11,7 +11,7 @@
 
 
 
-filepath = r"C:\Users\elena\Desktop\6TTA\DI-Bootcamp\Week 3\Day 4\sowpods.txt"
+filepath = r"C:\Users\elena\Desktop\6TTA\DI-Bootcamp\Week 3\Day 4\ExercisesXP\sowpods.txt"
 
 
 def get_words_from_file(filepath):
@@ -76,9 +76,9 @@ print("Salary:", salary)
 
 data["company"]["employee"]["birth_date"] = "12.12.2002"
 
-updatedJson = json.dumps(data, indent=2)
+updatedJson = json.dumps(data, indent=0)
 
-with open("updated_data.json", "w") as file:
+with open(r"C:\Users\elena\Desktop\6TTA\DI-Bootcamp\Week 3\Day 4\ExercisesXP\updated_data.json", "w") as file:
     file.write(updatedJson)
 
 print("saved to 'updated_data.json'")
